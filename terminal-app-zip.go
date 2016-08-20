@@ -14,7 +14,7 @@ import (
 const (
 	zipPath        = "terminal-notifier.temp.zip"
 	executablePath = "terminal-notifier.app/Contents/MacOS/terminal-notifier"
-	tempDirSuffix  = "gosxnotifier"
+	tempDirSuffix  = "gosxnotifier/terminal-notifier-1.6.3"
 )
 
 var (

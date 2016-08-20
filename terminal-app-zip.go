@@ -14,7 +14,8 @@ import (
 const (
 	zipPath        = "terminal-notifier.temp.zip"
 	executablePath = "terminal-notifier.app/Contents/MacOS/terminal-notifier"
-	tempDirSuffix  = "gosxnotifier/terminal-notifier-1.6.3/terminal-notifier-1.6.3"
+	tempDirSuffix  = "gosxnotifier"
+	zipNameSuffix  = "terminal-notifier-1.6.3"
 )
 
 var (
@@ -50,7 +51,8 @@ func exists(file string) bool {
 }
 
 func installTerminalNotifier() error {
-	rootPath = filepath.Join(os.TempDir(), tempDirSuffix)
+	baseRootPath := filepath.Join(os.TempDir(), tempDirSuffix)
+	rootPath = filepath.Join(baseRootPath, zipNameSuffix)
 
 	//if terminal-notifier.app already installed no-need to re-install
 	if exists(filepath.Join(rootPath, executablePath)) {
@@ -61,7 +63,7 @@ func installTerminalNotifier() error {
 	if err != nil {
 		return err
 	}
-	err = unpackZip(reader, rootPath)
+	err = unpackZip(reader, baseRootPath)
 	if err != nil {
 		return fmt.Errorf("could not unpack zip terminal-notifier file: %s", err)
 	}
